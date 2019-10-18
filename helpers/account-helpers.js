@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt")
 /** Creates a promise 
  * 
  * @param {*} rawPassword 
+ * @returns {Promise}
  */
 function encryptPassword (rawPassword) {
     return new Promise((resolve, reject) => {
@@ -15,7 +16,6 @@ function encryptPassword (rawPassword) {
         }, 1000)
     })
 }
-
 
 module.exports = {
     encryptPassword:encryptPassword

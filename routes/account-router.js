@@ -23,6 +23,7 @@ router.post("/login", (req, res) => {
         where: {email: req.body.email}
     })
     .then((resolve) => {
+        console.log(resolve)
         bcrypt.compare(req.body.password, resolve.password, (err, same) => {
             if (err) throw err;
             if (same) {
@@ -39,28 +40,29 @@ router.post("/login", (req, res) => {
 
 router.post("/signup", (req, res) => {
     let encrypter = accHelp.encryptPassword(req.body.password)  
-    encrypter.then((resolve) => {
+    
+    models.User.findOne({
+        where: {email: req.body.email}
+    })
+    .then((user) => {
         console.log("1st")
-        models.User.findOne({
-            where: {email: req.body.email}
-        })
-        .then((resolve) => {
-            console.log("2nd")
-            console.log(resolve)
-            if(resolve) res.redirect("/account/signup?signUpFailed=true");
-            else {
+        if (user) throw new Error("User Already Exists!");
+        encrypter
+        .then((encryptedPassword) => {
                 models.User.create({
                     name:req.body.username,
                     email:req.body.email,
-                    password: resolve,
+                    password: encryptedPassword,
+                    createdAt: new Date(),
+                    updatedAt: new Date()
+
                 })
                 .then(() => res.redirect("/account/login?signUpSuccessful=true"))
                 .catch(() => res.redirect("/account/signup?signUpFailed=true"))
-            }
         })
         .catch(() => res.redirect("/account/signup?signUpFailed=true"))
     })
-    .catch(() => res.redirect("/account/signup?signUpFailed=true"))
+    .catch((error) => res.redirect("/account/signup?signUpFailed=true"))
 })
 
 
