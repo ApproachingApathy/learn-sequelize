@@ -1,0 +1,30 @@
+.tab-bar {
+    width: 100%;
+}
+
+.tab-bar-list {
+    padding: 0;
+    display: flex;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+.tab-bar-list li {
+    list-style: none;
+    padding: 15px;
+    border: 1px solid black;
+    transition: background-color 250ms;
+}
+
+.tab-bar-list li:hover {
+    background-color: rgb(98, 207, 243);
+}
+
+.tab-bar-list li a {
+    text-decoration: none;
+    color: unset;
+}
+
+.active {
+    background-color: lightblue;
+}

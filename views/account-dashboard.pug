@@ -1,4 +1,36 @@
 extend ./layouts/account
 
+append head
+    link(rel="stylesheet", href="/styles/dashboard.css")
+    link(rel="stylesheet", href="/styles/tab-bar.css")
+    link(rel="stylesheet", href="https://cdn.quilljs.com/1.3.6/quill.snow.css")
+
 block account-content
     h2 Dashboard
+
+    .tab-bar
+        ul.tab-bar-list
+            li.active
+                a(href="#") Watch List
+            li
+                a(href="#") Profile
+            li
+                a(href="#") Settings
+    .dashboard-pane
+        h1 Bio
+        button(onclick="toggleEditMode()") edit
+        .editor-div#editor-div(hidden="true")
+            #editor
+            button(onclick="postBio()") Submit
+        .bio#bio
+            - var bio = user.bio
+            if user.bio
+                .bio-content !{bio}
+            else
+                p Nothing's here! Tell us about yourself.
+
+append post-loads
+    script(src="https://cdn.quilljs.com/1.3.6/quill.js")
+    script(src="/scripts/script.js")
+        
+        

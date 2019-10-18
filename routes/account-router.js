@@ -4,9 +4,12 @@ const bcrypt = require("bcrypt")
 const models = require('../models')
 
 const accHelp = require("../helpers/account-helpers")
+const dashboardRouter = require("./dashboard-router")
+
+router.use("/dashboard", dashboardRouter)
 
 router.get("/", (req, res) => {
-    if (req.session.isAuthenticated) res.redirect("/");
+    if (req.session.isAuthenticated) res.redirect("/account/dashboard");
     else res.redirect("/account/login")
 })
 
@@ -23,7 +26,6 @@ router.post("/login", (req, res) => {
         where: {email: req.body.email}
     })
     .then((resolve) => {
-        console.log(resolve)
         bcrypt.compare(req.body.password, resolve.password, (err, same) => {
             if (err) throw err;
             if (same) {
@@ -53,6 +55,8 @@ router.post("/signup", (req, res) => {
                     name:req.body.username,
                     email:req.body.email,
                     password: encryptedPassword,
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
                     createdAt: new Date(),
                     updatedAt: new Date()
 
