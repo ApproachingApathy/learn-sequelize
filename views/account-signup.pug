@@ -1,0 +1,25 @@
+extend ./layouts/account 
+
+append head
+    link(rel="stylesheet", href="/styles/form.css")
+
+block account-content
+    .account-log
+            form(action="/account/signup", method="post")
+                .form-group
+                    label(for="email") Email
+                    input#email(type="text", name="email")
+                .form-group
+                    label(for="password") Password
+                    input#password(type="password", name="password")
+                .form-group
+                    label(for="username") Username
+                    input#username(type="text", name="username")
+                .form-group
+                    label(for="first_name") First Name
+                    input#first_name(type="text", name="first_name")
+                .form-group
+                    label(for="last_name") Last Name
+                    input#last_name(type="text", name="last_name")
+                .form-group.button
+                    button(type="submit") Login

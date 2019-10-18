@@ -1,0 +1,23 @@
+extend ./layouts/account 
+
+append head
+    link(rel="stylesheet", href="/styles/form.css")
+    link(rel="stylesheet", href="/styles/msg.css")
+
+block account-content
+    .account-log
+        if query 
+            if query.loginFailed
+                .msg-inline.failure
+                        p.text-center Could not log you in! Check your credentials or sign up.
+
+        form(action="/account/login", method="post")
+            .form-group
+                label(for="email") Email
+                input#email(type="text", name="email")
+            .form-group
+                label(for="password") Password
+                input#password(type="password", name="password")
+            .form-group.button
+                button(type="submit") Login
+                a(href="/account/signup") Sign Up

@@ -1,0 +1,53 @@
+.account-log {
+    border: 1px solid rgba(153, 153, 153, 0.6);
+    padding: 20px;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    
+}
+
+.form-group.button {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form-group.button button {
+    font-size: 1.25em;
+}
+
+.form-group label {
+    min-width: 30%;
+    font-weight: bold;
+    padding: 3px 0;
+}
+
+.form-group input {
+    width: 100%;
+    border-radius: 5px;
+    padding-left: 5px;
+    transition: border-width 250ms;
+    border: 1px solid rgba(153, 153, 153, 0.6);
+}
+
+.form-group input:hover {
+    background-color: rgb(206, 206, 206);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-width: 2px;
+    background-color: initial;
+}
+
+
+@media screen and (min-width:950px) {
+    .account-log {
+        width:unset;
+        min-width: 40%;
+    }
+}

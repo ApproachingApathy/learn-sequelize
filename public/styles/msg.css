@@ -1,0 +1,12 @@
+:root {
+    --failure-bg-color: rgba(170, 60, 53, 0.75)
+}
+
+.msg-inline {
+    padding: 5px;
+    border: 1px solid darkred;
+}
+
+.msg-inline.failure {
+    background-color: var(--failure-bg-color);
+}

@@ -1,0 +1,94 @@
+/* Universal Variables */
+:root {
+    --container-width: 950px;
+}
+
+/* Elements */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin:0;
+}
+
+/* Utility Classes */
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+/* Standard Classes */
+
+/* Header Section */
+.header {
+    width: 100%;
+    background-color: lightblue;
+    z-index: 1000;
+}
+
+.header-content {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-nav-section {
+}
+
+.header-nav-section .nav-list {
+    padding: 0;
+    flex-direction: row;
+}
+
+.nav-list li {
+    --nav-border: 1px solid black;
+    list-style-type: none;
+    padding: 10px 20px;
+    transition: background-color 250ms;
+    border-right: var(--nav-border);
+}
+
+.nav-list li:last-child {
+    border-right: none;
+}
+
+.nav-list li:hover {
+    background-color: #fff;
+}
+
+
+.nav-list a {
+    text-decoration: none;
+    color: inherit;
+}
+/* End of Header section */
+
+
+.container {
+    --container-border: 1px solid black;
+    width: 100%;
+    padding: 20px;
+    border-left: var(--container-border);
+    border-right: var(--container-border);
+    border-top: 0;
+    box-shadow: 0 0 10px 1px rgb(66, 66, 66);
+}
+
+/* min-width should match --container-width */
+@media screen and (min-width:950px) { 
+    .header-content {
+        width: var(--container-width);
+    }
+
+    .container {
+        width: var(--container-width);
+    }
+}
